@@ -194,23 +194,25 @@ def daily_stock():
 
     try:
         print(stockList)
-        resume_df = pd.DataFrame(stockList,
+        path = "C:\\Users\\kjuio\\file_test"
+        stock_df = pd.DataFrame(stockList,
                                 columns=["종목코드","종목명","시간","종가","대비","시가","고가","저가","매도호가","매수호가","거래량","거래대금"
                                     ,"예상체결가 구분 플래그","예상체결가","예상체결가 전일대비","예상체결수량"])
-        resume_df.index = resume_df.index + 1
+        stock_df.index = stock_df.index + 1
         tm = time.localtime()
         string = time.strftime('%Y_%m_%d', tm)
         title = '_'+string+'.csv'
-        resume_df.to_csv(f'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
+        stock_df.to_csv(path,'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
     except PermissionError:
-        resume_df = pd.DataFrame(stockList,
+        path = "C:\\Users\\kjuio\\file_test"
+        stock_df = pd.DataFrame(stockList,
                                 columns=["순서", "종목코드","종목명","시간","종가","대비","시가","고가","저가","매도호가","매수호가","거래량","거래대금"
                                     ,"예상체결가 구분 플래그","예상체결가","예상체결가 전일대비","예상체결수량"])
-        resume_df.index = resume_df.index + 1
-        resume_df.to_csv(f'stock.csv', mode='w', encoding='utf-8-sig', header=True, index=True)
+        stock_df.index = stock_df.index + 1
+        stock_df.to_csv(path,'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
  
-schedule.every().day.at("01:09").do(daily_stock)
+schedule.every().day.at("23:20").do(daily_stock)
 
 while True:
-    schedule.run_pending()
+    schedule.run_pending()          
     time.sleep(1)
