@@ -210,8 +210,8 @@ def daily_stock():
                                     ,"예상체결가 구분 플래그","예상체결가","예상체결가 전일대비","예상체결수량"])
         stock_df.index = stock_df.index + 1
         stock_df.to_csv(path,'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
- 
-schedule.every().day.at("12:20").do(daily_stock)
+# -9 시간을 해줘야 한다.
+schedule.every().day.at("03:30").do(daily_stock)
 print('start')
 while True:
     schedule.run_pending()          
