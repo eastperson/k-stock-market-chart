@@ -194,7 +194,7 @@ def daily_stock():
 
     try:
         print(stockList)
-        path = "C:\Users\Administrator\k-stock\files"
+        path = "C:\\Users\\Administrator\\k-stock\\files"
         stock_df = pd.DataFrame(stockList,
                                 columns=["종목코드","종목명","시간","종가","대비","시가","고가","저가","매도호가","매수호가","거래량","거래대금"
                                     ,"예상체결가 구분 플래그","예상체결가","예상체결가 전일대비","예상체결수량"])
@@ -204,14 +204,14 @@ def daily_stock():
         title = '_'+string+'.csv'
         stock_df.to_csv(path,'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
     except PermissionError:
-        path = "C:\Users\Administrator\k-stock\files\error"
+        path = "C:\\Users\\Administrator\\k-stock\\files"
         stock_df = pd.DataFrame(stockList,
                                 columns=["순서", "종목코드","종목명","시간","종가","대비","시가","고가","저가","매도호가","매수호가","거래량","거래대금"
                                     ,"예상체결가 구분 플래그","예상체결가","예상체결가 전일대비","예상체결수량"])
         stock_df.index = stock_df.index + 1
         stock_df.to_csv(path,'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
 # -9 시간을 해줘야 한다.
-schedule.every().day.at("03:50").do(daily_stock)
+schedule.every().day.at("03:55").do(daily_stock)
 print('start')
 while True:
     schedule.run_pending()          
