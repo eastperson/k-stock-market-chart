@@ -211,7 +211,7 @@ def daily_stock():
         stock_df.index = stock_df.index + 1
         stock_df.to_csv(path,'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
 # -9 시간을 해줘야 한다.
-schedule.every().day.at("03:40").do(daily_stock)
+schedule.every().day.at("03:50").do(daily_stock)
 print('start')
 while True:
     schedule.run_pending()          
