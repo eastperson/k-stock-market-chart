@@ -211,8 +211,8 @@ def daily_stock():
         stock_df.index = stock_df.index + 1
         stock_df.to_csv(path,'stock'+title, mode='w', encoding='utf-8-sig', header=True, index=True)
  
-schedule.every().day.at("23:20").do(daily_stock)
-
+schedule.every().day.at("12:20").do(daily_stock)
+print('start')
 while True:
     schedule.run_pending()          
     time.sleep(1)
